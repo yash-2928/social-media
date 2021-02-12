@@ -1,31 +1,37 @@
 package demo.login.data;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
 public class Role {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private ERole name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    public Role() {
-    }
-    
-    public Role(ERole name) {
-        this.name = name;
-    }
-    
+	@Enumerated(EnumType.STRING)
+	private ERole name;
+
+	@ManyToMany(mappedBy = "roles")
+	private Collection<User> users;
+
+	public Role() {
+	}
+
+	public Role(ERole name) {
+		this.name = name;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -73,7 +73,7 @@ public class AuthController {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: EnrollmentNo is already taken!"));
 		}
 
-		if (userRepository.existsById(signupRequest.getUsername())) {
+		if (userRepository.existsByEmail(signupRequest.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
 		}
 
@@ -105,6 +105,6 @@ public class AuthController {
 		user.setRoles(roles);
 		userRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User regisered successfully"));
+		return ResponseEntity.ok(new MessageResponse("User regisered successfully"));
 	}
 }
