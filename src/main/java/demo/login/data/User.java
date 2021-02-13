@@ -1,7 +1,6 @@
 package demo.login.data;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;

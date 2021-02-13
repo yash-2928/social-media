@@ -54,8 +54,9 @@ public class AuthController {
 	@PostMapping("/signin")
 	public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginRequest loginRequest) {
 
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
+				loginRequest.getPassword());
+		Authentication authentication = authenticationManager.authenticate(token);
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
@@ -73,20 +74,20 @@ public class AuthController {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: EnrollmentNo is already taken!"));
 		}
 
-		if (userRepository.existsByEmail(signupRequest.getUsername())) {
+		if (userRepository.existsByEmail(signupRequest.getEmail())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
 		}
 
 		// Create new user's account
 		User user = new User();
-		signupRequest.getUsername();
-		signupRequest.getEnrollmentNo();
-		signupRequest.getPhoneNumber();
-		signupRequest.getFisrtname();
-		signupRequest.getLastname();
-		signupRequest.getDateOfBirth();
-		signupRequest.getGender();
-		encoder.encode(signupRequest.getPassword());
+		user.setEmail(signupRequest.getEmail());
+		user.setEnrollmentNo(signupRequest.getEnrollmentNo());
+		user.setPhoneNumber(signupRequest.getPhoneNumber());
+		user.setFisrtname(signupRequest.getFisrtname());
+		user.setLastname(signupRequest.getLastname());
+		user.setDateOfBirth(signupRequest.getDateOfBirth());
+		user.setGender(signupRequest.getGender());
+		user.setPassword(encoder.encode(signupRequest.getPassword()));
 
 		Set<String> strRoles = signupRequest.getRole();
 		Set<Role> roles = new HashSet<>();
