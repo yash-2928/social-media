@@ -22,11 +22,11 @@ public class SignupRequest {
     @NonNull
     private String password;
 
-    public String getUsername() {
+    public String getEmail() {
         return email;
     }
 
-    public void setUsername(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -36,22 +36,6 @@ public class SignupRequest {
 
     public void setEnrollmentNo(Long enrollmentNo) {
         this.enrollmentNo = enrollmentNo;
-    }
-
-    public Set<String> getRole() {
-        return role;
-    }
-
-    public void setRole(Set<String> role) {
-        this.role = role;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Long getPhoneNumber() {
@@ -92,5 +76,21 @@ public class SignupRequest {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Set<String> getRole() {
+        return role;
+    }
+
+    public void setRole(Set<String> role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
