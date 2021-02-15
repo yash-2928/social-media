@@ -16,6 +16,7 @@ public class SignupRequest {
     private String lastname;
     private String gender;
     private Date dateOfBirth;
+
     private Set<String> role;
 
     @NonNull
