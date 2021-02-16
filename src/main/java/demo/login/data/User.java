@@ -31,9 +31,7 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_roles", 
-        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
-        inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName = "id"))
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName = "id"))
     private Set<Role> roles;
 
     public Long getId() {
@@ -67,8 +65,6 @@ public class User {
     public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    
 
     public String getLastname() {
         return lastname;
