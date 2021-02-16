@@ -12,7 +12,7 @@ public class SignupRequest {
 
     private Long enrollmentNo;
     private Long phoneNumber;
-    private String fisrtname;
+    private String firstname;
     private String lastname;
     private String gender;
     private Date dateOfBirth;
@@ -43,14 +43,6 @@ public class SignupRequest {
 
     public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getFisrtname() {
-        return fisrtname;
-    }
-
-    public void setFisrtname(String fisrtname) {
-        this.fisrtname = fisrtname;
     }
 
     public String getLastname() {
@@ -91,5 +83,13 @@ public class SignupRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 }

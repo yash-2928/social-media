@@ -24,7 +24,7 @@ public class User {
     private String email;
     private Long enrollmentNo;
     private Long phoneNumber;
-    private String fisrtname;
+    private String firstname;
     private String lastname;
     private String gender;
     private Date dateOfBirth;
@@ -66,12 +66,12 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFisrtname() {
-        return fisrtname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFisrtname(String fisrtname) {
-        this.fisrtname = fisrtname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastname() {
