@@ -24,14 +24,16 @@ public class User {
     private String email;
     private Long enrollmentNo;
     private Long phoneNumber;
-    private String fisrtname;
+    private String firstname;
     private String lastname;
     private String gender;
     private Date dateOfBirth;
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName = "id"))
+    @JoinTable(name = "users_roles", 
+        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName = "id"))
     private Set<Role> roles;
 
     public Long getId() {
@@ -66,13 +68,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFisrtname() {
-        return fisrtname;
-    }
-
-    public void setFisrtname(String fisrtname) {
-        this.fisrtname = fisrtname;
-    }
+    
 
     public String getLastname() {
         return lastname;
@@ -112,6 +108,14 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
 }

@@ -83,7 +83,7 @@ public class AuthController {
 		user.setEmail(signupRequest.getEmail());
 		user.setEnrollmentNo(signupRequest.getEnrollmentNo());
 		user.setPhoneNumber(signupRequest.getPhoneNumber());
-		user.setFisrtname(signupRequest.getFisrtname());
+		user.setFirstname(signupRequest.getFirstname());
 		user.setLastname(signupRequest.getLastname());
 		user.setDateOfBirth(signupRequest.getDateOfBirth());
 		user.setGender(signupRequest.getGender());
