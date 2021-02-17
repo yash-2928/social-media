@@ -1,44 +1,15 @@
-package demo.login.data;
+package demo.login.payload.response;
 
-import java.time.Instant;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "post")
-public class Post {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PostResponse {
     private Long postId;
-
     private Long enrollmentNo;
-
-    @Column(name = "picByte", length = 1000)
-    private byte[] picByte;
     private String postTitle;
     private String postType;
     private String content;
     private Date postDate;
     private Boolean reported;
-
-    public Post() {
-    }
-
-    public Post(Long enrollmentNo, String postTitle, String content, String postType) {
-        this.enrollmentNo = enrollmentNo;
-        this.postTitle = postTitle;
-        this.content = content;
-        this.postType = postType;
-        this.postDate = Date.from(Instant.now());
-        this.reported = false;
-    }
 
     public Long getPostId() {
         return postId;
@@ -96,11 +67,4 @@ public class Post {
         this.reported = reported;
     }
 
-    public byte[] getPicByte() {
-        return picByte;
-    }
-
-    public void setPicByte(byte[] picByte) {
-        this.picByte = picByte;
-    }
 }
