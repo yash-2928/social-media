@@ -20,8 +20,8 @@ public class Post {
 
     private Long enrollmentNo;
 
-    @Column(name = "picByte", length = 1000)
-    private byte[] picByte;
+    @Column(nullable = true, length = 64)
+    private String photos;
     private String postTitle;
     private String postType;
     private String content;
@@ -31,11 +31,12 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long enrollmentNo, String postTitle, String content, String postType) {
+    public Post(Long enrollmentNo, String postTitle, String content, String photos) {
         this.enrollmentNo = enrollmentNo;
         this.postTitle = postTitle;
         this.content = content;
-        this.postType = postType;
+        this.photos = photos;
+        //this.postType = postType;
         this.postDate = Date.from(Instant.now());
         this.reported = false;
     }
@@ -96,11 +97,11 @@ public class Post {
         this.reported = reported;
     }
 
-    public byte[] getPicByte() {
-        return picByte;
+    public String getPhotos() {
+        return photos;
     }
 
-    public void setPicByte(byte[] picByte) {
-        this.picByte = picByte;
+    public void setPhotos(String photos) {
+        this.photos = photos;
     }
 }

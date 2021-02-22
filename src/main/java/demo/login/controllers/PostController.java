@@ -1,5 +1,6 @@
 package demo.login.controllers;
 
+import demo.login.payload.response.PostResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import demo.login.data.Post;
 import demo.login.payload.request.PostRequest;
-import demo.login.payload.response.PostResponse;
 import demo.login.repository.PostRepository;
 
 @RestController
@@ -44,7 +44,7 @@ public class PostController {
     @PostMapping("/post")
     public ResponseEntity<String> uplaodPost(@RequestBody PostRequest postRequest) throws IOException {
         Post post = new Post(postRequest.getEnrollmentNo(), postRequest.getPostTitle(), postRequest.getContent(),
-                postRequest.getPostType());
+         postRequest.getPostType());
         postRepository.save(post);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

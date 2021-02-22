@@ -4,6 +4,7 @@ public class PostRequest {
 
     private Long enrollmentNo;
 
+    private String photos;
     private String postTitle;
     private String postType;
     private String content;
@@ -40,12 +41,19 @@ public class PostRequest {
         this.postType = postType;
     }
 
-    public PostRequest(Long enrollmentNo, String postTitle, String postType, String content) {
+    public String getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String photos) {
+        this.photos = photos;
+    }
+
+    public PostRequest(Long enrollmentNo, String postTitle, String postType, String content, String photos) {
         this.enrollmentNo = enrollmentNo;
         this.postTitle = postTitle;
         this.postType = postType;
         this.content = content;
+        this.photos = photos;
     }
-
-    
 }
