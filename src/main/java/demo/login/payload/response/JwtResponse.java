@@ -3,26 +3,26 @@ package demo.login.payload.response;
 import java.util.List;
 
 public class JwtResponse {
-   
-    private String token;
+
+    private String accessToken;
     private String type = "Bearer";
     private String email;
-    private Long enrollmentNo;
+    private Long userId;
     private List<String> roles;
 
-    public JwtResponse(String accessToken, String email, Long enrollmentNo, List<String> roles) {
-        this.token = accessToken;
+    public JwtResponse(String accessToken, String email, Long userId, List<String> roles) {
+        this.accessToken = accessToken;
         this.email = email;
-        this.enrollmentNo = enrollmentNo;
+        this.userId = userId;
         this.roles = roles;
     }
 
     public String getAccessToken() {
-        return token;
+        return accessToken;
     }
 
-    public void setAccessToken(String token) {
-        this.token = token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public String getTokenType() {
@@ -31,14 +31,6 @@ public class JwtResponse {
 
     public void setTokenType(String type) {
         this.type = type;
-    }
-
-    public Long getEnrollmentNo() {
-        return enrollmentNo;
-    }
-
-    public void setEnrollmentNo(Long enrollmentNo) {
-        this.enrollmentNo = enrollmentNo;
     }
 
     public List<String> getRoles() {
@@ -55,5 +47,13 @@ public class JwtResponse {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

@@ -43,6 +43,7 @@ public class PostController {
         postResponse.setPostTitle(post.getPostTitle());
         postResponse.setPostType(post.getPostType());
         postResponse.setReported(post.getReported());
+        postResponse.setComments(post.getComments());
         return postResponse;
     }
 
