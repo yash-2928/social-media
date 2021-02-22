@@ -2,20 +2,12 @@ package demo.login.payload.request;
 
 public class PostRequest {
 
-    private Long enrollmentNo;
+    private Long userId;
 
     private String photos;
     private String postTitle;
     private String postType;
     private String content;
-
-    public Long getEnrollmentNo() {
-        return enrollmentNo;
-    }
-
-    public void setEnrollmentNo(Long enrollmentNo) {
-        this.enrollmentNo = enrollmentNo;
-    }
 
     public String getPostTitle() {
         return postTitle;
@@ -49,11 +41,12 @@ public class PostRequest {
         this.photos = photos;
     }
 
-    public PostRequest(Long enrollmentNo, String postTitle, String postType, String content, String photos) {
-        this.enrollmentNo = enrollmentNo;
-        this.postTitle = postTitle;
-        this.postType = postType;
-        this.content = content;
-        this.photos = photos;
+    public Long getUserId() {
+        return userId;
     }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
 }

@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.login.data.Post;
+import demo.login.data.User;
 import demo.login.payload.request.PostRequest;
 import demo.login.repository.PostRepository;
+import demo.login.repository.UserRepository;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -29,12 +31,15 @@ public class PostController {
     @Autowired
     PostRepository postRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     private PostResponse mapPostToPostResponse(Post post) {
         PostResponse postResponse = new PostResponse();
         postResponse.setPostId(post.getPostId());
         postResponse.setContent(post.getContent());
-        postResponse.setEnrollmentNo(post.getEnrollmentNo());
         postResponse.setPostDate(post.getPostDate());
+        postResponse.setUser(post.getUser());
         postResponse.setPostTitle(post.getPostTitle());
         postResponse.setPostType(post.getPostType());
         postResponse.setReported(post.getReported());
@@ -43,8 +48,8 @@ public class PostController {
 
     @PostMapping("/post")
     public ResponseEntity<String> uplaodPost(@RequestBody PostRequest postRequest) throws IOException {
-        Post post = new Post(postRequest.getEnrollmentNo(), postRequest.getPostTitle(), postRequest.getContent(),
-         postRequest.getPostType());
+        User user = userRepository.findById(postRequest.getUserId()).get();
+        Post post = new Post(user, postRequest.getPostTitle(), postRequest.getContent(), postRequest.getPostType());
         postRepository.save(post);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

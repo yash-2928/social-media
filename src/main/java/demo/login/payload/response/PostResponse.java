@@ -2,9 +2,11 @@ package demo.login.payload.response;
 
 import java.util.Date;
 
+import demo.login.data.User;
+
 public class PostResponse {
     private Long postId;
-    private Long enrollmentNo;
+    private User user;
     private String postTitle;
     private String postType;
     private String content;
@@ -17,14 +19,6 @@ public class PostResponse {
 
     public void setPostId(Long postId) {
         this.postId = postId;
-    }
-
-    public Long getEnrollmentNo() {
-        return enrollmentNo;
-    }
-
-    public void setEnrollmentNo(Long enrollmentNo) {
-        this.enrollmentNo = enrollmentNo;
     }
 
     public String getPostTitle() {
@@ -65,6 +59,14 @@ public class PostResponse {
 
     public void setReported(Boolean reported) {
         this.reported = reported;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

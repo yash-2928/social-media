@@ -10,24 +10,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.login.data.Comment;
+import demo.login.data.Post;
+import demo.login.data.User;
 import demo.login.payload.request.CommentRequest;
 import demo.login.payload.response.MessageResponse;
 import demo.login.repository.CommentRepository;
+import demo.login.repository.PostRepository;
+import demo.login.repository.UserRepository;
 
 @RestController
 public class CommentController {
-    
+
     @Autowired
     CommentRepository commentRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PostRepository postRepository;
+
     @PostMapping("/comment")
     public ResponseEntity<MessageResponse> postComment(@RequestBody CommentRequest commentRequest) {
-        Comment comment = new Comment(commentRequest.getEnrollmentNo(), commentRequest.getCommentContent(),
-                commentRequest.getSubComment(), commentRequest.getCommentDate());
+        User user = userRepository.findById(commentRequest.getUserId()).get();
+        Post post = postRepository.findById(commentRequest.getPostId()).get();
+        Comment comment = new Comment(user, post, commentRequest.getCommentContent());
         commentRepository.save(comment);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    
+
     @DeleteMapping("/comment/{id}")
     public ResponseEntity<String> deleteComment(@PathVariable Long id) {
         try {

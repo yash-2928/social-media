@@ -1,41 +1,51 @@
 package demo.login.data;
 
-import java.sql.Date;
+import java.util.Date;
+import java.time.Instant;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "comments")
 public class Comment {
-    
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long commentId;
-    private Long postId;
     private Long jobId;
-    private Long enrollmentNo;
     private String commentContent;
-    private String subComment;
-    private Date commentDte;
+    private Date commentDate;
 
-    public Comment(Long enrollmentNo2, String commentContent2, String subComment2, java.util.Date commentDate) {
-	}
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 
-	public Long getCommentId() {
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    public Comment() {
+    }
+
+    public Comment(User user, Post post, String commentContent) {
+        this.user = user;
+        this.post = post;
+        this.commentContent = commentContent;
+        this.commentDate = Date.from(Instant.now());
+    }
+
+    public Long getCommentId() {
         return commentId;
     }
 
     public void setCommentId(Long commentId) {
         this.commentId = commentId;
-    }
-
-    public Long getPostId() {
-        return postId;
-    }
-
-    public void setPostId(Long postId) {
-        this.postId = postId;
     }
 
     public Long getJobId() {
@@ -46,37 +56,35 @@ public class Comment {
         this.jobId = jobId;
     }
 
-    public Long getEnrollmentNo() {
-        return enrollmentNo;
-    }
-
-    public void setEnrollmentNo(Long enrollmentNo) {
-        this.enrollmentNo = enrollmentNo;
-    }
-
-    
-
-    public String getSubComment() {
-        return subComment;
-    }
-
-    public void setSubComment(String subComment) {
-        this.subComment = subComment;
-    }
-
-    public Date getCommentDte() {
-        return commentDte;
-    }
-
-    public void setCommentDte(Date commentDte) {
-        this.commentDte = commentDte;
-    }
-
     public String getCommentContent() {
         return commentContent;
     }
 
     public void setCommentContent(String commentContent) {
         this.commentContent = commentContent;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getCommentDate() {
+        return commentDate;
+    }
+
+    public void setCommentDate(Date commentDate) {
+        this.commentDate = commentDate;
     }
 }

@@ -3,25 +3,17 @@ package demo.login.payload.request;
 import java.util.Date;
 
 public class CommentRequest {
-    
-    private Long enrollmentNo;
+
+    private Long userId;
+    private Long postId;
     private String commentContent;
     private String subComment;
-    private Date commentDate;
 
-    public CommentRequest(Long enrollmentNo, String commentContent, String subComment, Date commentDate) {
-        this.enrollmentNo = enrollmentNo;
+    public CommentRequest(Long userId, Long postId, String commentContent, String subComment, Date commentDate) {
+        this.userId = userId;
+        this.postId = postId;
         this.commentContent = commentContent;
         this.subComment = subComment;
-        this.commentDate = commentDate;
-    }
-
-    public Long getEnrollmentNo() {
-        return enrollmentNo;
-    }
-
-    public void setEnrollmentNo(Long enrollmentNo) {
-        this.enrollmentNo = enrollmentNo;
     }
 
     public String getCommentContent() {
@@ -40,12 +32,20 @@ public class CommentRequest {
         this.subComment = subComment;
     }
 
-    public Date getCommentDate() {
-        return commentDate;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setCommentDate(Date commentDate) {
-        this.commentDate = commentDate;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
-    
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
 }

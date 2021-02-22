@@ -2,23 +2,29 @@ package demo.login.data;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "post")
+@Table(name = "posts")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
 
-    private Long enrollmentNo;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @Column(nullable = true, length = 64)
     private String photos;
@@ -28,15 +34,18 @@ public class Post {
     private Date postDate;
     private Boolean reported;
 
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
+
     public Post() {
     }
 
-    public Post(Long enrollmentNo, String postTitle, String content, String photos) {
-        this.enrollmentNo = enrollmentNo;
+    public Post(User user, String postTitle, String content, String photos) {
+        this.user = user;
         this.postTitle = postTitle;
         this.content = content;
         this.photos = photos;
-        //this.postType = postType;
+        // this.postType = postType;
         this.postDate = Date.from(Instant.now());
         this.reported = false;
     }
@@ -47,14 +56,6 @@ public class Post {
 
     public void setPostId(Long postId) {
         this.postId = postId;
-    }
-
-    public Long getEnrollmentNo() {
-        return enrollmentNo;
-    }
-
-    public void setEnrollmentNo(Long enrollmentNo) {
-        this.enrollmentNo = enrollmentNo;
     }
 
     public String getPostTitle() {
@@ -103,5 +104,21 @@ public class Post {
 
     public void setPhotos(String photos) {
         this.photos = photos;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
